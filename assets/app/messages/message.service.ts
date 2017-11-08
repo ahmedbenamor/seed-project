@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { Http, Headers,Response } from "@angular/http";
-
+import "rxjs/Rx";
 import {Observable } from "rxjs";
 import {Message} from "./message.model";
 
@@ -52,16 +52,14 @@ export class MessageService {
         return this.http.patch('http://localhost:3000/message/'+message.messageId, body,{headers: headers})
             .map((response: Response)=>response.json())
             .catch((error: Response)=> Observable.throw(error.json()));
-        /*
-   const body = JSON.stringify(message);
-   const headers = new Headers({'Content-Type': 'application/json'});
-   return this.http.patch('http://localhost:3000/message/' + message.messageId, body, {headers: headers})
-       .map((response: Response) => response.json())
-       .catch((error: Response) => Observable.throw(error.json()));
-       */
+
     }
 
     deleteMessage(message: Message){
-        this.messages.splice(this.messages.indexOf(message),1)
+        this.messages.splice(this.messages.indexOf(message),1);
+        const headers = new Headers({'Content-Type':'application/json'});
+        return this.http.delete('http://localhost:3000/message/'+message.messageId,{headers: headers})
+            .map((response: Response)=>response.json())
+            .catch((error: Response)=> Observable.throw(error));
     }
 }

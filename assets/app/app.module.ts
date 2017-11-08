@@ -15,6 +15,7 @@ import {LogoutComponent} from "./auth/logout.component";
 import {SigninComponent} from "./auth/signin.component";
 import {SignupComponent} from "./auth/signup.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {AuthService} from "./auth/auth.service";
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import {ReactiveFormsModule} from "@angular/forms";
         ReactiveFormsModule,
         HttpModule
     ],
-    providers : [MessageService],
+    providers : [MessageService, AuthService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
