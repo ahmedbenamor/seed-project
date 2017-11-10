@@ -21,21 +21,37 @@ ngOnInit(){
     onSubmit(form: NgForm){
     if(this.message){
         // Edit
-        this.message.content = form.value.content;
         this.messageService.updateMessage(this.message)
             .subscribe(
-                result => console.log(result)
+                result => {
+                    console.log(result);
+                    this.message.content = form.value.content;
+                    form.resetForm();
+                    this.message = null;
+                },
+                error => {
+                    form.resetForm();
+                    this.message = null;
+                }
             );
-        this.message = null;
+
     }else{
         const message = new Message(form.value.content,'Ahmed');
         this.messageService.addMessage(message)
             .subscribe(
-                data => console.log(data),
-                error => console.error(error)
+                data => {
+                    console.log(data);
+                    form.resetForm();
+                    this.message = null;
+                },
+                error => {
+                    console.error(error);
+                    form.resetForm();
+                    this.message = null;
+                }
             );
      }
-        form.resetForm();
+
     }
     onClear(form: NgForm){
         this.message = null;
