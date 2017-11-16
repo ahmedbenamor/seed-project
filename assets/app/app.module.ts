@@ -17,6 +17,8 @@ import {SignupComponent} from "./auth/signup.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {AuthService} from "./auth/auth.service";
 import {RedirectComponent} from "./auth/redirect.component";
+import {ErrorComponent} from "./errors/error.component";
+import {ErrorService} from "./errors/error.service";
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import {RedirectComponent} from "./auth/redirect.component";
         LogoutComponent,
         SigninComponent,
         SignupComponent,
-        RedirectComponent
+        RedirectComponent,
+        ErrorComponent
     ],
     imports: [
         BrowserModule,
@@ -40,7 +43,7 @@ import {RedirectComponent} from "./auth/redirect.component";
         ReactiveFormsModule,
         HttpModule
     ],
-    providers : [MessageService, AuthService],
+    providers : [MessageService, AuthService, ErrorService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -24,4 +24,8 @@ export class MessageComponent {
             error => console.log(error)
         );
     }
+
+    belongsToUser(){
+        return localStorage.getItem('userId') == this.message.userId;
+    }
 }
