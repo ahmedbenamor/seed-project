@@ -16,7 +16,7 @@ import {AuthModule} from "./auth/auth.module";
     declarations: [
         AppComponent,
         AuthenticationComponent,
-        HeaderComponent
+        HeaderComponent,
         ErrorComponent
     ],
     imports: [
